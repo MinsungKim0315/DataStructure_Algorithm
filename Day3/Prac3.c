@@ -27,7 +27,7 @@ int main(){
 	//N명의 학생 수 입력
 	printf("input student number: ");
 	scanf("%d", &number);
-	while (getchar() != '\n');	//scanf 의해 발생하는 개행문자 제거
+	while (getchar() != '\n');	// 사용자가 엔터 키를 누를 때까지 프로그램이 진행되지 않고 대기
 
 	//구조체[score] 메모리 공간 N개 할당
 	score *s = (score *)malloc(sizeof(score) * number);
