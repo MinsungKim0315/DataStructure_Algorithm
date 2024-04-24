@@ -158,7 +158,13 @@ ListNode* list_sort(ListNode* head) {	//노드 정렬
 		}
 		lastNode = pNode;
 	} while (swapped);
-
+	/*
+ 	for (ListNode* pNode = head; pNode != NULL; pNode = pNode->link) {
+	for (ListNode* nextNode = pNode->link; nextNode != NULL; nextNode = nextNode->link) {
+		if (pNode->data > nextNode->data) swap(pNode, nextNode);
+		}
+	}
+ 	*/
 	return head;
 }
 
