@@ -8,13 +8,13 @@ typedef struct DoubleListNode {
 	struct DoubleListNode* Rlink;
 }DoubleListNode;
 
-DoubleListNode* DoubleInitial(); // ÃÊ±âÈ­ (Çì´õ ³ëµå »ı¼º)
-DoubleListNode* DoubleInsertFirst(DoubleListNode* head, DoubleListElement item);// Á¦ÀÏ ¾Õ ³ëµå »ı¼º
-DoubleListNode* DoubleDeleteFirst(DoubleListNode* head); // Á¦ÀÏ ¾Õ ³ëµå »èÁ¦ 
-DoubleListNode* DoubleConcat(DoubleListNode* head1, DoubleListNode* head2);//¸®½ºÆ® °áÇÕ list1 + list2
-void DoubleDisplay(DoubleListNode* head); // ¸®½ºÆ® Á¤¹æÇâ Ãâ·Â
-void DoubleDisplayReverse(DoubleListNode* head); // ¸®½ºÆ® ¿ª¹æÇâ Ãâ·Â
-void FreeDoubleList(DoubleListNode* head); // ¸®½ºÆ® ÀüÃ¼ »èÁ¦
+DoubleListNode* DoubleInitial(); // ì´ˆê¸°í™” (í—¤ë” ë…¸ë“œ ìƒì„±)
+DoubleListNode* DoubleInsertFirst(DoubleListNode* head, DoubleListElement item);// ì œì¼ ì• ë…¸ë“œ ìƒì„±
+DoubleListNode* DoubleDeleteFirst(DoubleListNode* head); // ì œì¼ ì• ë…¸ë“œ ì‚­ì œ 
+DoubleListNode* DoubleConcat(DoubleListNode* head1, DoubleListNode* head2);//ë¦¬ìŠ¤íŠ¸ ê²°í•© list1 + list2
+void DoubleDisplay(DoubleListNode* head); // ë¦¬ìŠ¤íŠ¸ ì •ë°©í–¥ ì¶œë ¥
+void DoubleDisplayReverse(DoubleListNode* head); // ë¦¬ìŠ¤íŠ¸ ì—­ë°©í–¥ ì¶œë ¥
+void FreeDoubleList(DoubleListNode* head); // ë¦¬ìŠ¤íŠ¸ ì „ì²´ ì‚­ì œ
 
 DoubleListNode* DoubleInitial() {
 	DoubleListNode* node = (DoubleListNode*)malloc(sizeof(DoubleListNode));
@@ -25,10 +25,10 @@ DoubleListNode* DoubleInitial() {
 DoubleListNode* DoubleInsertFirst(DoubleListNode* head, DoubleListElement item) {
 	DoubleListNode* node = (DoubleListNode*)malloc(sizeof(DoubleListNode));
 	node->data = item;
-	node->Rlink = head->Rlink;	//³ëµå¸¦ »ı¼ºÇÏ±â Àü »óÈ²¿¡¼­ head->Rlink
-	node->Llink = head;	//head ´Â Çìµå ³ëµå
+	node->Rlink = head->Rlink;	//ë…¸ë“œë¥¼ ìƒì„±í•˜ê¸° ì „ ìƒí™©ì—ì„œ head->Rlink
+	node->Llink = head;	//head ëŠ” í—¤ë“œ ë…¸ë“œ
 
-	head->Rlink->Llink = node;	//head->Rlink->Llink´Â Ã¹ ¹øÂ°(Àü¿¡) »ı¼ºµÈ ³ëµåÀÇ Llink
+	head->Rlink->Llink = node;	//head->Rlink->LlinkëŠ” ì²« ë²ˆì§¸(ì „ì—) ìƒì„±ëœ ë…¸ë“œì˜ Llink
 	head->Rlink = node;
 
 	return head;
@@ -49,7 +49,7 @@ DoubleListNode* DoubleConcat(DoubleListNode* head1, DoubleListNode* head2) {
 	else if (head2 == NULL || head2 == head2->Rlink) return head1;
 	else{
 		head1->Llink->Rlink = head2->Rlink;
-		head2->Rlink->Llink = head1->Rlink;
+		head2->Rlink->Llink = head1->Llink;
 		head2->Llink->Rlink = head1;
 		head1->Llink = head2->Llink;
 		head2->Llink = head2;
