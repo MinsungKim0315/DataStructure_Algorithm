@@ -1,6 +1,6 @@
 /*
-ÇÑ ÇÐ³â ÇÐ»ýµéÀÇ ¼ºÀû Á¾ÇÕ ÄÚµå
-(±¸Á¶Ã¼ »ç¿ë)
+í•œ í•™ë…„ í•™ìƒë“¤ì˜ ì„±ì  ì¢…í•© ì½”ë“œ
+(êµ¬ì¡°ì²´ ì‚¬ìš©)
 */
 #include<stdio.h>
 #include<stdlib.h>
@@ -22,14 +22,14 @@ int main() {
 	scanf_s("%d", &num_class);
 	while (getchar() != '\n');
 
-	CLASS* c = (CLASS*)malloc(sizeof(CLASS) * num_class);	//±¸Á¶Ã¼ ¹Ý °³¼ö ¸¸Å­ ÇÒ´ç
+	CLASS* c = (CLASS*)malloc(sizeof(CLASS) * num_class);	//êµ¬ì¡°ì²´ ë°˜ ê°œìˆ˜ ë§Œí¼ í• ë‹¹
 	if (c == NULL) exit(1);
 
 	for (int i = 0; i < num_class; i++) {
 		printf("number of students in class #%d: ", i + 1);
-		scanf_s("%d", &c[i].StudentNumber);	//2Â÷¿ø ¹è¿­ »ý¼º
+		scanf_s("%d", &c[i].StudentNumber);	//2ì°¨ì› ë°°ì—´ ìƒì„±
 		while (getchar() != '\n');
-		c[i].StudentScore = (int*)malloc(sizeof(int) * c[i].StudentNumber);	//°¢ ¹Ý ÇÐ»ý ¼ö ¸¸Å­ÀÇ ¸Þ¸ð¸® ÇÒ´çÇØ Á¡¼ö ÀÔ·Â
+		c[i].StudentScore = (int*)malloc(sizeof(int) * c[i].StudentNumber);	//ê° ë°˜ í•™ìƒ ìˆ˜ ë§Œí¼ì˜ ë©”ëª¨ë¦¬ í• ë‹¹í•´ ì ìˆ˜ ìž…ë ¥
 		for (int j = 0; j < c[i].StudentNumber; j++) {
 			c[i].StudentScore[j] = rand() % 100 + 1;
 			printf("%4d\n", c[i].StudentScore[j]);
@@ -37,11 +37,11 @@ int main() {
 	}
 	for (int i = 0; i < num_class; i++) {
 		c[i].ClassAverage = 0;  // Initialize average
-		for (int j = 0; j < c[i].StudentNumber; j++) {	//Æò±Õ °è»ê
+		for (int j = 0; j < c[i].StudentNumber; j++) {	//í‰ê·  ê³„ì‚°
 			c[i].ClassAverage += c[i].StudentScore[j];
 		}
 		c[i].ClassAverage = c[i].ClassAverage / c[i].StudentNumber;
-		for (int j = 0; j < c[i].StudentNumber; j++) {	//ºÐ»ê “I Ç¥ÁØÆíÂ÷ °è»ê
+		for (int j = 0; j < c[i].StudentNumber; j++) {	//ë¶„ì‚° Â“I í‘œì¤€íŽ¸ì°¨ ê³„ì‚°
 			c[i].ClassDispersion += (c[i].StudentScore[j] - c[i].ClassAverage) * (c[i].StudentScore[j] - c[i].ClassAverage);
 		}
 		c[i].ClassDispersion = c[i].ClassDispersion / c[i].StudentNumber;
