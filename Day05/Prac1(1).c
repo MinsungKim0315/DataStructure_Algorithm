@@ -1,4 +1,4 @@
-// µ¿ÀûÇÒ´ç ÀÌ¿ëÇÑ ÃÖ´ë°ø¾à¼ö ±¸ÇÏ±â
+// ë™ì í• ë‹¹ ì´ìš©í•œ ìµœëŒ€ê³µì•½ìˆ˜ êµ¬í•˜ê¸°
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -7,7 +7,7 @@ int main() {
 	printf("insert two numbers: ");
 	scanf_s("%d %d", &a, &b);
 
-	//¼±»ı´Ô ÄÚµå
+	//ì„ ìƒë‹˜ ì½”ë“œ
 	/*int count1 = 0;
 	for (int i = 1; i <= a; i++) {
 		if (a % i == 0) count1++;
@@ -101,7 +101,7 @@ int main() {
 	}
 
 	for (int i = 0; i < count3; i++) printf("%3d", List3[i]); printf("\n");
-	printf("ÃÖ´ë °ø¾à¼ö = %d", List3[count3-1]);
+	printf("ìµœëŒ€ ê³µì•½ìˆ˜ = %d", List3[count3-1]);
 
 	free(List1);
 	free(List2);
