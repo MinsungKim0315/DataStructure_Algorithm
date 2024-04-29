@@ -1,29 +1,29 @@
 /*
-¹®ÀÚ¿­ ³ª´©±â
+ë¬¸ìì—´ ë‚˜ëˆ„ê¸°
 */
 #include <stdio.h> // main.c
 #include <stdlib.h>
-// ¹®ÀÚ¿­À» ±âÈ£·Î ³ª´©¾î ¹İÈ¯ÇÏ´Â ÇÔ¼ö
-// char** (¹İÈ¯°ª) : ³ª´¶ ¹®ÀÚ¿­À» ÀúÀåÇÑ Æ÷ÀÎÅÍ ¹è¿­ÀÇ ½ÃÀÛ ÁÖ¼Ò¸¦ ¹İÈ¯
-// char* str : ³ª´­ ¹®ÀÚ¿­À» ÀúÀåÇÑ ¹è¿­ÀÇ ½ÃÀÛ ÁÖ¼Ò
-// char sign : ±¸ºĞ ±âÈ£
-// int* cnt : ³ª´¶ ¹®ÀÚ¿­ÀÇ ¼ö·®
+// ë¬¸ìì—´ì„ ê¸°í˜¸ë¡œ ë‚˜ëˆ„ì–´ ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜
+// char** (ë°˜í™˜ê°’) : ë‚˜ë‰œ ë¬¸ìì—´ì„ ì €ì¥í•œ í¬ì¸í„° ë°°ì—´ì˜ ì‹œì‘ ì£¼ì†Œë¥¼ ë°˜í™˜
+// char* str : ë‚˜ëˆŒ ë¬¸ìì—´ì„ ì €ì¥í•œ ë°°ì—´ì˜ ì‹œì‘ ì£¼ì†Œ
+// char sign : êµ¬ë¶„ ê¸°í˜¸
+// int* cnt : ë‚˜ë‰œ ë¬¸ìì—´ì˜ ìˆ˜ëŸ‰
 char** split(char* str, char sign, int* cnt) {
     if (str == NULL) return NULL;
 
     char** ary = NULL;
-    *cnt = 0; // ³ª´²Áú ¹®ÀÚ¿­ ¼ö·® º¯¼ö
+    *cnt = 0; // ë‚˜ëˆ ì§ˆ ë¬¸ìì—´ ìˆ˜ëŸ‰ ë³€ìˆ˜
 
     for (int end = 0; str[end] != '\0';) {
         (*cnt)++;
-        ary = (char**)realloc(ary, sizeof(char*) * (*cnt)); // ¹®ÀÚ¿­ ÀúÀå °ø°£ ÇÒ´ç
+        ary = (char**)realloc(ary, sizeof(char*) * (*cnt)); // ë¬¸ìì—´ ì €ì¥ ê³µê°„ í• ë‹¹
 
-        int len = 0; // ÇÑ ºí·° ¹®ÀÚ¿­ ±æÀÌ
+        int len = 0; // í•œ ë¸”ëŸ­ ë¬¸ìì—´ ê¸¸ì´
         for (int i = end; str[i] != sign && str[i] != '\0'; i++) len++;
 
         ary[(*cnt) - 1] = (char*)malloc(len + 1); // char ary[(*cnt) - 1][len + 1];
 
-        for (int i = 0; i < len; i++) // ¹®ÀÚ¿­ º¹»ç : strcpy()
+        for (int i = 0; i < len; i++) // ë¬¸ìì—´ ë³µì‚¬ : strcpy()
             ary[(*cnt) - 1][i] = str[end + i];
 
         ary[(*cnt) - 1][len] = '\0';
