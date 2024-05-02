@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
-#define swap(type, x, y){type t = x;x=y;y=t;}
+#define swap(type, x, y){type t = x;x=y;y=t;}	//macro
 
 void display(int* pArr, int size) {
 	for (int i = 0; i < size; i++) {
@@ -10,7 +10,7 @@ void display(int* pArr, int size) {
 }
 
 int* randomize(int size) {
-	int* pArr = (int*)calloc(size, sizeof(int));
+	int* pArr = (int*)calloc(size, sizeof(int)); //allocate memory for an array of 'size' integers
 	srand((unsigned int)time(NULL));
 	for (int i = 0; i < size; i++) {
 		pArr[i] = rand() % 100;
@@ -34,8 +34,8 @@ void insertion(int* pArr, int size) {
 	}
 }
 void insertion_shell(int* pArr, int first, int size, int gap) {
-	for (int i = first + gap; i < size; i += gap) {
-		for (int j = first; j < i; j += gap) {
+	for (int i = first + gap; i < size; i += gap) {	//create gap
+		for (int j = first; j < i; j += gap) {	//control the start index
 			if (pArr[j] > pArr[i]) swap(int, pArr[j], pArr[i]);
 		}
 	}
