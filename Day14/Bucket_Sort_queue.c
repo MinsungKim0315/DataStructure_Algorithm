@@ -80,15 +80,15 @@ void bucket(int* arr, int size) {
 	for (int i = 0; i < 10; i++) {
 		while (QueueIsEmpty(bucket1[i]) != 1) {
 			int temp = Dequeue(bucket1[i]);
-			Enqueue(bucket1[temp / 10], temp);
+			Enqueue(bucket1[(temp / 10) % 10], temp);
 		}
 	}
-	for (int i = 0, j= 0; i < 10; i++) {
-		while (QueueIsEmpty(bucket2[i]) != 1) {
-			int temp = Dequeue(bucket2);
-			arr[j++] = temp;
-		}
+	
+	for (int i = 0, j = 0; i < size; i++) {
+	while(QueueIsEmpty(bucket2[j]))j++;
+	arr[i] = Dequeue(bucket2[j]);
 	}
+	
 	for (int i = 0; i < 10; i++) {
 		FreeQueue(bucket1[i]);
 		FreeQueue(bucket2[i]);
