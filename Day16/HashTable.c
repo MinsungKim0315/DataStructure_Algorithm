@@ -20,15 +20,15 @@ typedef struct HashTable {
 	ElementType* table;
 }HashTable;
 
-HashTable* initHashTable(int TableSize); //초기화
-void set(HashTable** HT, KeyType Key, ValueType Value);	//삽입
-ValueType get(HashTable* HT, KeyType Key);	//검색
-int erase(HashTable* HT, KeyType Key);	//삭제
-void freeHashTable(HashTable* HT);	//해쉬 테이블 삭제
-void clear(ElementType* Element);	//저장 공간 삭제
-int HashFunction(KeyType Key, int KeyLength, int Tablesize);	//해쉬 함수
-int HashFunction2(KeyType Key, int KeyLength, int Tablesize);	//인덱스 해쉬
-void HashTableResize(HashTable** HT);	//해쉬 테이블 확장
+HashTable* initHashTable(int TableSize);
+int HashFunction(KeyType Key, int KeyLength, int Tablesize);
+int HashFunction2(KeyType Key, int KeyLength, int Tablesize);
+void HashTableResize(HashTable** HT);
+void set(HashTable** HT, KeyType Key, ValueType Value);
+ValueType get(HashTable* HT, KeyType Key);
+int erase(HashTable* HT, KeyType Key);
+void freeHashTable(HashTable* HT);
+void clear(ElementType* Element);
 
 int main(void) {
 	HashTable* HT = initHashTable(11); // 소수
@@ -87,12 +87,39 @@ int main(void) {
 HashTable* initHashTable(int TableSize) {
 	HashTable* HT = (HashTable*)malloc(sizeof(HashTable));
 	HT->size = TableSize;
-	HT->table = (ElementType*)calloc(TableSize, sizeof(ElementType));
+	HT->table = (ElementType*)calloc(TableSize, sizeof(ElementType));	//sizeof(ElementType) 크기의 변수를 TableSize개 할당
 	HT->occupiedCount = 0;
 
 	return HT;
 }
-
+int HashFunction(KeyType Key, int KeyLength, int TableSize) {
+	int HashValue = 0;
+	for (int i = 0; i < KeyLength; i++) {	//iterates over each character
+		HashValue = (HashValue << 2) + Key[i];	//shift an integer's bits to the left --> multiplying the number by 2^2
+	}
+	HashValue = HashValue % TableSize;
+	return HashValue;
+}
+int HashFunction2(KeyType Key, int KeyLength, int TableSize) {
+	int HashValue = 0;
+	for (int i = 0; i < KeyLength; i++) {
+		HashValue = (HashValue << 2) + Key[i];
+	}
+	HashValue = HashValue % (TableSize - 3);
+	return HashValue + 1;
+}
+void HashTableResize(HashTable** HT) {
+	ElementType* OldTable = (*HT)->table;	//기존 table 가리키는 포인터
+	HashTable* NewHT = initHashTable((*HT)->size * 2);	//새로운 table 생성(크기 2배)
+	printf("\nHashTableResize. New table size is : %5d\n\n", NewHT->size);
+	for (int i = 0; i < (*HT)->size; i++) {	//새로운 table에 기존 table 내용 복사
+		if (OldTable[i].status == OCCUPIED) {
+			set(&NewHT, OldTable[i].key, OldTable[i].key);
+		}
+	}
+	freeHashTable((*HT));
+	(*HT) = NewHT;
+}
 void set(HashTable** HT, KeyType Key, ValueType Value) {
 	double Usuage = (double)(*HT)->occupiedCount / (*HT)->size;	//해쉬 테이블 밀도 계산
 	if (Usuage > 0.5) HashTableResize(HT);
@@ -102,38 +129,40 @@ void set(HashTable** HT, KeyType Key, ValueType Value) {
 	StartAddress = Address = HashFunction(Key, KeyLen, (*HT)->size);
 	int StepSize = HashFunction2(Key, KeyLen, (*HT)->size);
 
-	while ((*HT)->table[Address].status != EMPTY) {	//Collision
-		if ((*HT)->table[Address].status == DELETED || strcmp((*HT)->table[Address].key, Key) != 0) {	//Status is 'DELETED' OR there is already another key assigned.
+	while ((*HT)->table[Address].status != EMPTY) {	//OCCUPIED, DELETED
+		if ((*HT)->table[Address].key == NULL || strcmp((*HT)->table[Address].key, Key) != 0) {	//Status is 'DELETED' OR there is already another key assigned.
 			printf("Key(% 15s), Address(% 5d), StepSize(% 5d) ::Collision occured!\n", Key, Address, StepSize);
 			Address = (Address + StepSize) % (*HT)->size;
-			if (StartAddress == Address) {
+			if (Address == StartAddress) {
 				HashTableResize(HT);
-				return set(HT, Key, Value);
+				set(HT, Key, Value);
 			}
 		}
 		else return;
 	}
+
 	(*HT)->table[Address].key = (char*)malloc(sizeof(char) * (KeyLen + 1));
-	strcpy_s((*HT)->table[Address].key, strlen(Key) + 1, Key);
+	strcpy_s((*HT)->table[Address].key, strlen(Key) + 1, Key);	//새로운 키 입력
 	(*HT)->table[Address].value = (char*)malloc(sizeof(char) * (strlen(Value) + 1));
-	strcpy_s((*HT)->table[Address].value, strlen(Value) + 1, Value);
-	(*HT)->table[Address].status = OCCUPIED;
-	(*HT)->occupiedCount++;
+	strcpy_s((*HT)->table[Address].value, strlen(Value) + 1, Value);	//새로운 값 입력
+	(*HT)->table[Address].status = OCCUPIED;	//새로운 키의 상태 업데이트
+	(*HT)->occupiedCount++;	//총 키의 개수 증가
 	printf("Key(%15s), address(%5d), %26s\n", Key, Address, ":: Entered");
 }
-
 ValueType get(HashTable* HT, KeyType Key) {
 	int KeyLen = strlen(Key);
 	int StartAddress, Address;
 	StartAddress = Address = HashFunction(Key, KeyLen, HT->size);
 	int StepSize = HashFunction2(Key, KeyLen, HT->size);
-	
-	while (HT->table[Address].status != EMPTY) { // DELETED or OCCUPIED
+
+	while (HT->table[Address].status != EMPTY) {
 		if (HT->table[Address].key == NULL || strcmp(HT->table[Address].key, Key) != 0) {	//(HT->table[Address].key == NULL) == (HT->table[Address].status == DELETED)
 			Address = (Address + StepSize) % HT->size;
-			if (StartAddress == Address) return NULL;
+			if (Address == StartAddress) {
+				return NULL;
+			}
 		}
-		else break; // OCCUPIED && strcmp == 0
+		else break;
 	}
 	return HT->table[Address].value;
 }
@@ -166,26 +195,4 @@ void freeHashTable(HashTable* HT) {
 	for (int i = 0; i < HT->size; i++) clear(&(HT->table[i]));
 	free(HT->table);
 	free(HT);
-}
-int HashFunction(KeyType Key, int KeyLength, int TableSize) {
-	int HashValue = 0;
-	for (int i = 0; i < KeyLength; i++) HashValue = (HashValue << 3) + Key[i];
-	HashValue = HashValue % TableSize;
-	return HashValue;
-}
-int HashFunction2(KeyType Key, int KeyLength, int TableSize) {
-	int HashValue = 0;
-	for (int i = 0; i < KeyLength; i++) HashValue = (HashValue << 2) + Key[i];
-	HashValue = HashValue % (TableSize - 3);
-	return HashValue + 1;
-}
-void HashTableResize(HashTable** HT) {
-	ElementType* OldTable = (*HT)->table;
-	HashTable* NewHT = initHashTable((*HT)->size * 2);
-	printf("\nHashTableResize. New table size is : %5d\n\n", NewHT->size);
-	for (int i = 0; i < (*HT)->size; i++)
-		if (OldTable[i].status == OCCUPIED)
-			set(&NewHT, OldTable[i].key, OldTable[i].value);
-	freeHashTable((*HT));
-	(*HT) = NewHT;
 }
