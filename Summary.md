@@ -2,7 +2,7 @@
 ## 2024/05/14 Complete
 * * *
 ## 자료 구조
-Linked List
+### Linked List
 * 정의: 구조체를 한 줄로 연결 시킨 데이터 구조
 * 구성 요소
   * head: 연결 리스트에서 첫 번째 노드의 주소를 저장한 포인터
@@ -27,4 +27,4 @@ Linked List
      ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/2ee6707b-e9d0-430a-954b-be807923e305)
      - Code: [Doubly Linked List (2)](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day08/DoublyLinkedListwithHeader.c)
 
-Stack
+### Stack
