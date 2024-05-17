@@ -28,3 +28,9 @@
      - Code: [Doubly Linked List (2)](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day08/DoublyLinkedListwithHeader.c)
 
 ### Stack
+* 정의: 자료를 한 곳에 담는 구조
+* 성격: 가장 처음 쌓인 자료는 가장 나중에 나가는 자료, Last-In First-Out
+* Stack in array
+  - Code: [stack in array](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day10/Stack_array.c)
+* Stack in list
+  - Code: [stack in list](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day10/Stack_list.c)
