@@ -6,10 +6,16 @@ typedef struct QueueNode {
 	QueueElement data;
 	struct QueueNode* link;
 }QueueNode;
-
 typedef struct Queue{
 	QueueNode* front, * rear;
 }LinkedQueueType;
+//ADT
+LinkedQueueType* QueueInit();
+int QueueIsEmpty(LinkedQueueType* queue);
+void Enqueue(LinkedQueueType* queue, QueueElement data);
+QueueElement Dequeue(LinkedQueueType* queue);
+void PrintQueue(LinkedQueueType* queue);
+void FreeQueue(LinkedQueueType* queue);
 
 LinkedQueueType* QueueInit() {
 	LinkedQueueType* newQueue = (LinkedQueueType*)malloc(sizeof(LinkedQueueType));
@@ -18,11 +24,9 @@ LinkedQueueType* QueueInit() {
 
 	return newQueue;
 }
-
 int QueueIsEmpty(LinkedQueueType* queue) {
 	return (queue->front == NULL);
 }
-
 void Enqueue(LinkedQueueType* queue, QueueElement data) {
 	QueueNode* newNode = (QueueNode*)malloc(sizeof(QueueNode));
 	if (newNode == NULL) exit(1);
@@ -37,7 +41,6 @@ void Enqueue(LinkedQueueType* queue, QueueElement data) {
 		queue->rear = newNode;
 	}
 }
-
 QueueElement Dequeue(LinkedQueueType* queue) {
 	if (QueueIsEmpty(queue)) return 0;
 	QueueNode* deleteNode = queue->front;
@@ -48,14 +51,12 @@ QueueElement Dequeue(LinkedQueueType* queue) {
 
 	return data;
 }
-
 void PrintQueue(LinkedQueueType* queue) {
 	printf("queue: ");
 	for (QueueNode* pNode = queue->front; pNode != NULL; pNode = pNode->link) {
 		printf("%4d --> ", pNode->data);
 	}printf("\n");
 }
-
 void FreeQueue(LinkedQueueType* queue) {
 	for (QueueNode* pNode = queue->front; pNode != NULL;) {
 		QueueNode* deleteNode = pNode;
@@ -64,6 +65,9 @@ void FreeQueue(LinkedQueueType* queue) {
 	}
 	free(queue);
 }
+//Deque ADT
+void Endeque(LinkedQueueType* queue, QueueElement data, int derection);
+QueueElement Dedeque(LinkedQueueType* queue, int direction);
 
 void Endeque(LinkedQueueType* queue, QueueElement data, int direction) {
 	QueueNode* newNode = (QueueNode*)malloc(sizeof(QueueNode));
@@ -74,39 +78,34 @@ void Endeque(LinkedQueueType* queue, QueueElement data, int direction) {
 		queue->front = newNode;
 		queue->rear = newNode;
 	}
-	else if (direction == 1) {
+	else if (direction == 1) {	//insert data in the front(deque)
 		newNode->link = queue->front;
 		queue->front = newNode;
 	}
-	else {
+	else {	//insert data in the rear
 		queue->rear->link = newNode;
 		queue->rear = newNode;
 	}
-
 }
-
 QueueElement Dedeque(LinkedQueueType* queue, int direction) {
 	if (QueueIsEmpty(queue)) return 0;
-	QueueNode* deleteNode = NULL;
-	QueueElement data = NULL;
-	if (queue->front->link == NULL) queue->front = queue->rear = NULL;
-	if (direction == 1) {
-		deleteNode = queue->rear;
-		data = deleteNode->data;
-		QueueNode* pNode = NULL;
-		for (pNode = queue->front; pNode->link->link != NULL; ) {
+	QueueNode* delNode =NULL;
+	QueueElement data = 0;
+	if (direction == 1) {	//get data in the rear
+		delNode = queue->rear;
+		QueueNode* pNode = queue->front;
+		while (pNode->link != queue->rear) {
 			pNode = pNode->link;
 		}
 		pNode->link = NULL;
 		queue->rear = pNode;
 	}
-	else {
-		deleteNode = queue->front;
-		data = deleteNode->data;
-		queue->front = deleteNode->link;
+	else {	//get data in the front
+		delNode = queue->front;
+		queue->front = delNode->link;
 	}
-
-	free(deleteNode);
+	data = delNode->data;
+	free(delNode);
 
 	return data;
 }
