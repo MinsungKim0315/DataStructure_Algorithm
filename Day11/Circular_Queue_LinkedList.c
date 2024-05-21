@@ -6,10 +6,17 @@ typedef struct QueueNode {
 	QueueElement data;
 	struct QueueNode* link;
 }QueueNode;
-
 typedef struct Queue {
 	QueueNode* front, * rear;
 }CircularLinkedQueueType;
+
+//ADT
+CircularLinkedQueueType* QueueInit();
+int QueueIsEmpty(CircularLinkedQueueType* queue);
+void Enqueue(CircularLinkedQueueType* queue, QueueElement data);
+QueueElement Dequeue(CircularLinkedQueueType* queue);
+void PrintQueue(CircularLinkedQueueType* queue);
+void FreeQueue(CircularLinkedQueueType* queue);
 
 CircularLinkedQueueType* QueueInit() {
 	CircularLinkedQueueType* newQueue = (CircularLinkedQueueType*)malloc(sizeof(CircularLinkedQueueType));
@@ -22,7 +29,6 @@ CircularLinkedQueueType* QueueInit() {
 int QueueIsEmpty(CircularLinkedQueueType* queue) {
 	return queue->front == NULL;
 }
-
 void Enqueue(CircularLinkedQueueType* queue, QueueElement data) {
 	QueueNode* newNode = (QueueNode*)malloc(sizeof(QueueNode));
 	if (newNode == NULL) exit(1);
@@ -30,39 +36,36 @@ void Enqueue(CircularLinkedQueueType* queue, QueueElement data) {
 	if (QueueIsEmpty(queue)) {
 		newNode->link = newNode;
 		queue->front = newNode;
-		queue->rear = newNode;
+		queue->rear = newNode;	//circular queue
 	}
 	else {
-		queue->rear->link = newNode;
+		queue->rear->link = newNode;	//circular queue
 		queue->rear = newNode;
 		newNode->link = queue->front;
 	}
 }
-
 QueueElement Dequeue(CircularLinkedQueueType* queue) {
 	if (QueueIsEmpty(queue)) return 0;
 	QueueNode* deleteNode = queue->front;
 	QueueElement data = deleteNode->data;
 	if (queue->front == queue->rear) queue->front = queue->rear = NULL;
 	else {
-		queue->rear->link = queue->front->link;
+		queue->rear->link = queue->front->link;	//circular queue
 		queue->front = queue->rear->link;
 	}
 	free(deleteNode);
 	return data;
 }
-
 void PrintQueue(CircularLinkedQueueType* queue) {
 	if (QueueIsEmpty(queue)) printf("Empty Queue!\n");
 	printf("Queue: ");
 	QueueNode* pNode = queue->front;
-	do {
+	do {	//circular queue
 		printf("%3d --> ", pNode->data);
 		pNode = pNode->link;
 	} while (pNode != queue->front);
 	printf("%3d ... (back to front)\n", queue->front->data);
 }
-
 void FreeQueue(CircularLinkedQueueType* queue) {
 	QueueNode* pNode = queue->front;
 	QueueNode* delNode;
