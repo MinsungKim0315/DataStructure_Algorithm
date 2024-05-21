@@ -40,7 +40,8 @@
   ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/43763197-932e-476b-9471-790bcea2de9c)
   i.e.) Doouble-Ended Queue(deque)
   ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/59bdd8fc-2918-4444-8710-82d2c94a02e0)
-  - Code: 
+  - Code: [Linear Queue in Linked List](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day11/Linear_Queue_LinkedList.c)
 * Circular Queue
   ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/46bef5bf-57eb-4fa1-9222-3ede65ce2efe)
-  - Code: 
+  - Code:    
+    [Circular Queue in Linked List](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day11/Circular_Queue_LinkedList.c)
