@@ -28,9 +28,19 @@
      - Code: [Doubly Linked List (2)](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day08/DoublyLinkedListwithHeader.c)
 
 ### Stack
-* 정의: 자료를 한 곳에 담는 구조
 * 성격: 가장 처음 쌓인 자료는 가장 나중에 나가는 자료, Last-In First-Out
 * Stack in array
   - Code: [stack in array](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day10/Stack_array.c)
 * Stack in list
   - Code: [stack in list](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day10/Stack_list.c)
+
+### Queue
+* 성격: 먼저 들어온 데이커가 먼저 나가는 자료구조, First-In First-Out
+* Linear Queue
+  ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/43763197-932e-476b-9471-790bcea2de9c)
+  i.e.) Doouble-Ended Queue(deque)
+  ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/59bdd8fc-2918-4444-8710-82d2c94a02e0)
+  - Code: 
+* Circular Queue
+  ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/46bef5bf-57eb-4fa1-9222-3ede65ce2efe)
+  - Code: 
