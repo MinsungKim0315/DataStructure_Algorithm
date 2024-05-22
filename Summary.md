@@ -46,3 +46,23 @@
   - Code:    
     [Circular Queue in Linked List](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day11/Circular_Queue_LinkedList.c)    
     [Circular Queue in Array](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day11/Circular_Queue_Array.c)
+* * *
+## 정렬
+### Bubble Sort
+* 알고리즘: 인접한 레코드가 순서대로 되어 있지 않으면 교환, 전체가 정렬될 때까지 비교&교환의 반복
+* 시간 복잡도: $`O(n^2)`$
+  ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/05e93aaa-3bee-4d7a-80cb-4a7b0bdf106e)
+* Code: [Bubble sort](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day13/bubble.c)
+### Insertion Sort
+* 알고리즘: 정렬되지 않은 숫자들 중에서 왼쪽부터 정렬할 값을 선택하여 값이 위치할 자리를 찾아 삽입하는 정렬(더 큰 값은 1칸씩 오른쪽으로 이동)
+* 시간 복잡도: $`O(n^2)`$
+  ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/067885fc-aeae-4783-96c1-00a7503cc145)
+* Code: [Insertion sort](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day13/insertion.c)
+### Shell Sort
+* 알고리즘: 전체 리스트를 일정 간격의 부분 리스트로 나누고 부분 리스트를 정렬
+* 시간 복잡도: $`O(n^{1.5})`$
+  ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/4019438e-78f8-48b6-80fd-4ffe0902e4cc)
+* Code: [Shell sort](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day13/shell.c)
+### Merge Sort
+* 집합을 두 개로 나누어, 각각을 정렬, 다시 하나로 합치는 방법
+* 시간 복잡도: $`O(nlog_2(n))`$
