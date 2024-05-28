@@ -14,10 +14,10 @@ void randomize(int* arr, int size, int st, int end) {
 void bucket(int* arr, int size, int MAX) {
 	int* count = (int*)calloc(MAX + 1, sizeof(int));
 	for (int i = 0; i < size; i++) {
-		count[arr[i]]++;
+		count[arr[i]]++;	//버켓에 자릿수에 맞게 개수 입력
 	}
 	for (int i = 0, j = 0; i < MAX; i++) {
-		for (; count[i] > 0; count[i]--) {
+		for (; count[i] > 0; count[i]--) {	//동일한 수는 그 개수 만큼 arr에 출력
 			arr[j++] = i;
 		}
 	}
