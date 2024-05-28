@@ -73,18 +73,18 @@ void bucket(int* arr, int size) {
 		bucket2[i] = QueueInit();
 	}
 
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++) {	//1의 자리 수 맞게 버켓1에 dequeue
 		Enqueue(bucket1[arr[i] % 10], arr[i]);
 	}
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 10; i++) {	//10의 자리 수 맞게 버켓1에서 dequeue 후 bucket2에 enqueue
 		while (QueueIsEmpty(bucket1[i]) != 1) {
 			int temp = Dequeue(bucket1[i]);
-			Enqueue(bucket1[(temp / 10) % 10], temp);
+			Enqueue(bucket2[(temp / 10) % 10], temp);
 		}
 	}
 	
-	for (int i = 0, j = 0; i < size; i++) {
+	for (int i = 0, j = 0; i < size; i++) {	//bucket2 순서대로 arr 정렬
 	while(QueueIsEmpty(bucket2[j]))j++;
 	arr[i] = Dequeue(bucket2[j]);
 	}
