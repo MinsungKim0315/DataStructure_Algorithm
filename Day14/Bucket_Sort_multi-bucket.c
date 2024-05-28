@@ -85,7 +85,7 @@ void bucket(int* arr, int size) {
 	}
 	
 	for (int i = 0, j = 0; i < size; i++) {	//bucket2 순서대로 arr 정렬
-	while(QueueIsEmpty(bucket2[j]))j++;
+	while(QueueIsEmpty(bucket2[j]))j++;	//빈칸인 인댁스 지나기
 	arr[i] = Dequeue(bucket2[j]);
 	}
 	
