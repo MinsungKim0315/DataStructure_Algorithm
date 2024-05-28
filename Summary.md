@@ -78,7 +78,7 @@
 1. 단순히 자리수에 따라 버킷에 넣었다가 꺼내는 방법
    - 시간 복잡도: $`O(n)`$ (이론적인 하한선인 $`O(nlog_2(n))`$ 보다 작은 유일한 방법)
      ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/d2e59fe3-2e12-417e-85f6-231251ef3dd3)
-   - Code: [Bucket sort](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day14/Bucket_Sort_single-bucket.c)
+   - Code: [Bucket sort](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day14/Bucket_Sort.c)
 2. 2자리수 이상은 낮은 자리수로 먼저 분류한 다음,순서대로 읽어서 다시 높은 자리수로 분류하는 방법
    - 시간 복잡도: $`O(n)`$
      ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/50f5ca50-b2ac-4e05-8d65-9d5fab6b30d3)
