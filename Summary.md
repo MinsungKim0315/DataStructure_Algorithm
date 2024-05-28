@@ -66,3 +66,23 @@
 ### Merge Sort
 * 집합을 두 개로 나누어, 각각을 정렬, 다시 하나로 합치는 방법
 * 시간 복잡도: $`O(nlog_2(n))`$
+  ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/1e02c6e7-e2bd-41b1-aa8f-b2ebeb310be1)
+* Code: [Merge sort](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day14/Merge_Sort.c)
+### Quick Sort
+* low & high 교차할 때까지 반복, 교차점 기준으로 분할 --> 다시 퀵 정렬    
+  최소 단위로 분할 될 때까지 반복
+* 시간 복잡도: $`O(nlog_2(n))`$ (평균적으로 가장 빠름)
+  ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/7328a98b-cd3f-4a22-a12b-23ede3cb6ef2)
+* Code: [Quick sort](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day14/Quick_Sort.c)
+### Bucket Sort
+1. 단순히 자리수에 따라 버킷에 넣었다가 꺼내는 방법
+   - 시간 복잡도: $`O(n)`$ (이론적인 하한선인 $`O(nlog_2(n))`$ 보다 작은 유일한 방법)
+     ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/d2e59fe3-2e12-417e-85f6-231251ef3dd3)
+   - Code: [Bucket sort](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day14/Bucket_Sort_single-bucket.c)
+2. 2자리수 이상은 낮은 자리수로 먼저 분류한 다음,순서대로 읽어서 다시 높은 자리수로 분류하는 방법
+   - 시간 복잡도: $`O(n)`$
+     ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/50f5ca50-b2ac-4e05-8d65-9d5fab6b30d3)
+   - Code 1: [Radix sort_queue](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day14/Radix_Sort_queue.c)    
+     Code 2: [Radix sort_array](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day14/Radix_Sort_array.c)
+
+
