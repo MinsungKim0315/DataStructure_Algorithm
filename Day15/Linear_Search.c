@@ -32,7 +32,7 @@ int main() {
 	int range = 20;
 	int key;
 	int* a = (int*)calloc(n, sizeof(int));
-	printf("\n\t<< 순차 검색 >>\n");
+	printf("\n\t<< Linear Search >>\n");
 	for (int i = 0; i < n; i++) a[i] = rand() % range;
 	quick(a, 0, n - 1);
 	display(a, n);
