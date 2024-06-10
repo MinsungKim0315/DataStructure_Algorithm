@@ -84,5 +84,22 @@
      ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/50f5ca50-b2ac-4e05-8d65-9d5fab6b30d3)
    - Code 1: [Radix sort_queue](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day14/Radix_Sort_queue.c)    
      Code 2: [Radix sort_array](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day14/Radix_Sort_array.c)
-
+* * *
+## 탐색
+### Linear Search
+* 처음부터 끝까지 하나씩 순서대로 비교하며 원하는 값을 찾는 알고리즘
+* 정렬이 필요 없다
+* Code: [Linear Search](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day15/Linear_Search.c)
+### Binary Search
+* 반으로 나누어서 연산
+* 정렬이 필요하다
+* Code: [Binary Search](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day15/Binary_Search.c)
+### Interpolation Search
+* 정렬된 데이터 집합이 칸마다 값이 균등한 위치를 가정
+* key 값의 크기로 존재할 위치를 계산해 탐색하는 방법
+* $POS(k) = (high - low) * (key - array[low]) / (array[high] - array[low])$
+* Code: [Interpolation Search](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day15/Interpolation_Search.c)
+### Indexed Sequential Search
+* 정렬된 주 자료 집합에서 일정 간격으로 발췌한 인덱스 테이블 활용한 탐색
+* Code: [Indexed Sequential Search](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day15/IndexedSequential_Search.c)
 
