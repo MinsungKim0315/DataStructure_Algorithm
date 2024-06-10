@@ -102,4 +102,36 @@
 ### Indexed Sequential Search
 * 정렬된 주 자료 집합에서 일정 간격으로 발췌한 인덱스 테이블 활용한 탐색
 * Code: [Indexed Sequential Search](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day15/IndexedSequential_Search.c)
-
+* * *
+## Hash
+* Hashing: 키에 대한 연산으로 주소를 계산, 테이블의 자료 접근
+* Hash Function: 탐색 키를 입력받아 주소를 생성
+  1. 나눗셈법(제산 함수): ℎ(𝑘)=𝑘 𝑚𝑜𝑑(%)𝑚 [m = prime number]
+  2. 제곱법: ℎ(𝑘)=𝑘^2÷10^𝑛𝑚𝑜𝑑(%)10^𝑚 (m>n)
+  3. 기수변환법
+  4. 폴딩 함수
+* Hash Table: 값을 저장하기 위한 표
+  ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/edfe0001-c8c7-4349-9bf5-0bf6ad3d3d3f)
+  * Collision: 서로 다른 탐색 키가 같은 해쉬 주소를 가지는 현상
+  * Synonym: 충돌로 같은 주소를 갖는 키의 집합
+  * Overflow: 충돌로 주소에 저장할 공간이 부족해진 경우
+* Hash Address: 해쉬 테이블의 인덱스
+### Hash_Linear Probing
+* 충돌 해결책: Linear Probing
+  1. Open Addressing: 충돌 발생 시 다음 주소부터 비어 있는 주소에 저장
+     * while(isOccupy()) { address = ( address + 1 ) % TableSize; }
+     * HF1(key), HF1(key)+1, HF1(key)+2, ...
+  2. Quadratic Probing: 충돌 발생 시 비어있는 주소 찾기위해 제곱수의 합 계산
+     * while(isOccupy()) { address = ( address + i * i ) % TableSize; }
+     * HF1(key), HF1(key)+1, HF1(key)+4, HF1(key)+9, ...
+  3. Double Hashing = Rehashing: 비어있는 주소 찾기위해 또 다른 해쉬 함수 사용
+     * while(isOccupy()) { address = ( address + HF2(key) ) % TableSize; }
+ * Code: [Open Addressing](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day16/HashTable_OpenAddressing.c)
+### Hash_Chaining
+ * 충돌 해결책: Chaining
+   * 충돌이 일어난 주소를 연결 리스트와 이진 검색 트리 구현
+   * 연결 리스트와 이진 검색 트리로 충돌 및 오버플로우 문제 모두 해결
+     ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/01c18e5c-a7ee-48d2-b3b1-f6a19f64474a)
+ * Code: [Chaining](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day16/HashTable_Chaining.c)
+* * *
+## Tree
