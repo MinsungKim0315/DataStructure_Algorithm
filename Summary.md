@@ -131,7 +131,7 @@
  * 충돌 해결책: Chaining
    * 충돌이 일어난 주소를 연결 리스트와 이진 검색 트리 구현
    * 연결 리스트와 이진 검색 트리로 충돌 및 오버플로우 문제 모두 해결
-     ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/01c18e5c-a7ee-48d2-b3b1-f6a19f64474a)
+   ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/01c18e5c-a7ee-48d2-b3b1-f6a19f64474a)
  * Code: [Chaining](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day16/HashTable_Chaining.c)
 * * *
 ## Tree
