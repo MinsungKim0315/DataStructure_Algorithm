@@ -170,3 +170,16 @@
     + In-Order: 왼쪽 -> 부모 -> 오른쪽
     + Post-Order: 왼쪽 -> 오른쪽 -> 부모(트리 삭제 때 이용)
 * Code: [DFS]{https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day17/Tree.c}
+### Binary Search Tree
+* key(left) < key(parent) < key(right)
+* 같은 값을 갖는 노드는 없음
+* 중위 순회(In-Order)를 하면 오름차순으로 값을 얻을 수 있음
+* 삭제 연산
+  1. 삭제하려는 노드가 leaf인 경우
+     - 말단 노드의 부모 노드를 찾아서 연결을 끊음
+  2. 삭제하려는 노드가 자식이 1개 있는 경우
+     - 노드는 삭제하고 서브 트리는 부모 노드에 붙임
+  3. 삭제하려는 노드가 자식이 2개 있는 경우
+     - 삭제 노드 자식 중 (왼쪽 가장 큰 값 or 오른쪽 가장 작은 값)을 가진 노드를 삭제노드 위치로 가져옴
+     ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/787c907d-5425-4613-a8d8-4b1601e45ab6)
+* Code: [BinarySearchTree]{https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day17/BinarySearchTree.c}
