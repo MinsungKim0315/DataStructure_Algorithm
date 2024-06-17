@@ -169,7 +169,7 @@
     + Pre-Order: 부모 -> 왼쪽 -> 오른쪽
     + In-Order: 왼쪽 -> 부모 -> 오른쪽
     + Post-Order: 왼쪽 -> 오른쪽 -> 부모(트리 삭제 때 이용)
-* Code: [DFS]{https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day17/Tree.c}
+* Code: [DFS](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day17/Tree.c)
 ### Binary Search Tree
 * key(left) < key(parent) < key(right)
 * 같은 값을 갖는 노드는 없음
@@ -182,4 +182,4 @@
   3. 삭제하려는 노드가 자식이 2개 있는 경우
      - 삭제 노드 자식 중 (왼쪽 가장 큰 값 or 오른쪽 가장 작은 값)을 가진 노드를 삭제노드 위치로 가져옴
      ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/787c907d-5425-4613-a8d8-4b1601e45ab6)
-* Code: [BinarySearchTree]{https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day17/BinarySearchTree.c}
+* Code: [BinarySearchTree](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day17/BinarySearchTree.c)
