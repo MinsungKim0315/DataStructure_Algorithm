@@ -135,3 +135,38 @@
  * Code: [Chaining](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day16/HashTable_Chaining.c)
 * * *
 ## Tree
+### 구성 요소
+* Root: 트리의 최상위 노드
+* Node: 각 노드는 자식을 가리키는 포인터와 데이터를 가짐
+* Edge: 두 노드를 연결하는데 사용
+* Leaf: 자식이 없는 노드
+* Childern: 자식 노드
+* Parent: 부모 노드
+* Sibling: 같은 부모를 가지는 노드들
+* Degree: 노드가 갖는 자식의 수
+* Subtree: 트리 안에 작은 트리
+### 종류
+* Binary Tree
+  - 노드가 왼쪽 자식과 오른쪽 자식을 갖는 트리
+  - 자식은 최대 2명
+  - 종류
+    + Complete Binary Tree: 마지막 레벨을 제외한 모든 레벨은 노드로 가득참, 마지막 레벨은 왼쪽부터 오른쪽 방향으로 노드를 채워야 함
+    + Full Binary Tree: 각 노드가 0개 또는 2개의 자식이 있음
+    + Perfect Binary Tree: leaf 제외한 모든 노드는 2개의 자식 노드 갖음
+  - 인덱싱
+    + 배열 0번 칸 사용 시:
+      * 부모 인덱스 = (자식 인덱스 - 1) / 2
+      * 왼쪽 자식 인덱스 = (부모 인덱스) * 2 + 1
+      * 오른쪽 자식 인덱스 = 왼쪽 자식 인덱스 + 1
+    + 배열 1번 칸 사용 시:
+      * 부모 인덱스: (자식 인덱스) / 2
+      * 왼쪽 자식 인덱스: (부모 인덱스) * 2
+      * 오른쪽 자식 인덱스: 왼쪽 자식 인덱스 + 1
+### 순서 트리 탐색
+* BFS: 낮은 레벨부터 시작해서 오른쪽 방향으로 노드 검색. 한 레벨 검색이 끝나면 다음 레벨 왼쪽으로 내림
+* DFS: 가장 하단에 위치한 리프까지 내려가면서 노드 탐색
+  - 부모 노드의 방문 시기에 따라
+    + Pre-Order: 부모 -> 왼쪽 -> 오른쪽
+    + In-Order: 왼쪽 -> 부모 -> 오른쪽
+    + Post-Order: 왼쪽 -> 오른쪽 -> 부모(트리 삭제 때 이용)
+* Code: [DFS]{https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day17/Tree.c}
