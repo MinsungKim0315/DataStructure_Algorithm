@@ -4,107 +4,148 @@
 typedef int TreeElement;
 typedef struct TreeNode {
 	TreeElement value;
-	int level;
 	struct TreeNode* left;
 	struct TreeNode* right;
 }TreeNode;
 
-TreeNode* addNode(TreeNode* tree, TreeElement data); // 트리 노드 추가 
-TreeNode* removeNode(TreeNode* tree, TreeElement data); // 트리 노드 삭제
-TreeNode* searchNode(TreeNode* tree, TreeElement data); // 트리 노드 탐색
-void displayInOrder(TreeNode* tree); // 중위 순회
-TreeNode* findMin(TreeNode* tree); // 최소값 탐색
-TreeNode* findMax(TreeNode* tree); // 최대값 탐색
-void freeTree(TreeNode* tree); // 트리 제거
+//ADT
+TreeNode* addNode(TreeNode* tree, TreeElement data);
+TreeNode* removeNode(TreeNode* tree, TreeElement data);
+TreeNode* searchNode(TreeNode* tree, TreeElement data);
+void displayInOrder(TreeNode* tree);
+TreeNode* findMax(TreeNode* tree);
+TreeNode* findMin(TreeNode* tree);
+void freeTree(TreeNode* tree);
 
-int main() {
-	int arr[] = { 8 , 4 , 12 , 2 , 6 , 10 , 14 , 1 , 3 , 5 , 7 , 9 , 11 , 13 , 15 };
-	TreeNode* root = NULL;
-	for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
-		root = addNode(root, arr[i]);
-	}
-	displayInOrder(root);
-	printf("\n");
-	removeNode(root, 8);
-	displayInOrder(root);
-	printf("\n");
-	root = addNode(root, 15);
-
-	freeTree(root);
-}
 TreeNode* addNode(TreeNode* tree, TreeElement data) {
-	if (!tree) {	//tree == NULL
+	if (!tree) {
 		tree = (TreeNode*)malloc(sizeof(TreeNode));
 		tree->value = data;
 		tree->right = NULL;
 		tree->left = NULL;
 	}
-	else if (data == tree->value) printf("\n\n\t\t%d는 이미 등록 된 값 입니다.\n", data);
-	else if (data > tree->value) tree->right = addNode(tree->right, data);
-	else tree->left = addNode(tree->left, data);
+	else if (data == tree->value) printf("This value already exists!\n");
+	else if (data < tree->value) tree->left = addNode(tree->left, data);
+	else tree->right = addNode(tree->right, data);
 
 	return tree;
 }
-
 TreeNode* removeNode(TreeNode* tree, TreeElement data) {
-	TreeNode* temp = NULL;
-	if (tree) {
-		if (data == tree->value) {	//Found
-			if (tree->right == NULL && tree->left == NULL) {	//node is leaf
+    TreeNode* temp = NULL;
+    if (tree) {
+        if (data == tree->value) {
+			if (tree->left == NULL && tree->right == NULL) {	// Node is leaf
 				free(tree);
 				return NULL;
 			}
 			else {
-				if (tree->right == NULL) {	//only have left child
-					temp = tree->left;
-					free(tree);
-					return temp;
-				}
-				if (tree->left == NULL) {	//only have right child
+				if(tree->left == NULL){	// Only have child in the right
 					temp = tree->right;
 					free(tree);
 					return temp;
 				}
-				temp = findMax(tree->left);	//have both right and left child
+				if (tree->right == NULL) {	// Only have child in the left
+					temp = tree->left;
+					free(temp);
+					return temp;
+				}
+				// Node has both child
+				temp = findMax(tree->left);
 				tree->value = temp->value;
 				tree->left = removeNode(tree->left, temp->value);
 			}
-		}
-		else {
-			if (data > tree->value) tree->right = removeNode(tree->right, data);	//Searching
-			else tree->left = removeNode(tree->left, data);	//Searching
+        }
+        else {
+            if (data < tree->value) tree->left = removeNode(tree->left, data);
+            else /* data > t->value */ tree->right = removeNode(tree->right, data);
+        }
+    }
+    return tree;
+}
+TreeNode* searchNode(TreeNode* tree, TreeElement data) {
+	if (!tree) return NULL;
+	if (data == tree->value) return tree;
+	if (data < tree->value) return searchNode(tree->left, data);
+	else return searchNode(tree->right, data);
+}
+TreeNode* findMax(TreeNode* tree) {
+	if (tree) {
+		while (tree->right) {
+			tree = tree->right;
 		}
 	}
 	return tree;
 }
-
-TreeNode* searchNode(TreeNode* tree, TreeElement data) {
-	static int level_search;
-	if (!tree) return NULL;
-	if (data == tree->value) return tree;
-	if (data > tree->value)return searchNode(tree->right, data);
-	else return searchNode(tree->left, data);
+TreeNode* findMin(TreeNode* tree) {
+	if (tree) {
+		while (tree->left) {
+			tree = tree->left;
+		}
+	}
+	return tree;
 }
 void displayInOrder(TreeNode* tree) {
 	if (tree != NULL) {
 		displayInOrder(tree->left);
-		printf("%3d ->", tree->value);
+		printf("%3d", tree->value);
 		displayInOrder(tree->right);
 	}
 }
-TreeNode* findMin(TreeNode* tree) { // 가장 왼쪽이 최소값
-	if (tree && tree->left) return findMin(tree->left);
-	return tree;
-}
-TreeNode* findMax(TreeNode* tree) { // 가장 오른쪽이 큰 값
-	if (tree && tree->right) return findMax(tree->right);
-	return tree;
-}
-void freeTree(TreeNode* tree) { // 후위 순회 : 왼쪽 - 오른쪽 - 부모
-	if (tree) {
-		freeTree(tree->left); // 왼쪽
-		freeTree(tree->right); // 오른쪽
-		printf("%d노드 삭제\n", tree->value); // 부모
-		free(tree); // 메모리 해제 (루트 노드 가장 마지막에 해제)
+void freeTree(TreeNode* tree) {
+	if (tree != NULL) {
+		freeTree(tree->left);
+		freeTree(tree->right);
+		free(tree);
 	}
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+	TreeNode* root = NULL;
+
+	// Adding nodes to the tree
+	root = addNode(root, 50);
+	root = addNode(root, 30);
+	root = addNode(root, 70);
+	root = addNode(root, 20);
+	root = addNode(root, 40);
+	root = addNode(root, 60);
+	root = addNode(root, 80);
+
+	printf("In-order display of the tree:\n");
+	displayInOrder(root);
+	printf("\n");
+
+	// Searching for a node
+	TreeElement searchValue = 40;
+	TreeNode* searchResult = searchNode(root, searchValue);
+	if (searchResult != NULL) {
+		printf("Found node with value: %d\n", searchResult->value);
+	}
+	else {
+		printf("Node with value %d not found.\n", searchValue);
+	}
+
+	// Removing a node
+	TreeElement removeValue = 30;
+	printf("Removing node with value: %d\n", removeValue);
+	root = removeNode(root, removeValue);
+	printf("In-order display after removal:\n");
+	displayInOrder(root);
+	printf("\n");
+
+	// Display the maximum and minimum value in the tree
+	TreeNode* maxNode = findMax(root);
+	TreeNode* minNode = findMin(root);
+	if (maxNode != NULL && minNode != NULL) {
+		printf("Maximum value in the tree: %d\n", maxNode->value);
+		printf("Minimum value in the tree: %d\n", minNode->value);
+	}
+
+	// Free the tree
+	freeTree(root);
+
+	return 0;
 }
