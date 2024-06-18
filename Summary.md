@@ -202,3 +202,4 @@
      + 부모 인덱스 = (자식 인덱스) / 2
      + 왼쪽 자식 인덱스 = (부모 인덱스) * 2
      + 오른쪽 자식 인덱스 = 왼쪽 자식 인덱스 + 1
+### Code: [Heap](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day18/Heap.c)
