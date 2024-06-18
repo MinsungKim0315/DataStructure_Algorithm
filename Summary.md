@@ -183,3 +183,22 @@
      - 삭제 노드 자식 중 (왼쪽 가장 큰 값 or 오른쪽 가장 작은 값)을 가진 노드를 삭제노드 위치로 가져옴
      ![image](https://github.com/MinsungKim0315/DataStructure_Algorithm/assets/88697052/787c907d-5425-4613-a8d8-4b1601e45ab6)
 * Code: [BinarySearchTree](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day17/BinarySearchTree.c)
+* * *
+## Heap
+### 특징
+* 여러개의 데이터 값에서 가장 큰 값과 가장 작은 값을 빠르게 찾아내도록 만들어진 자료 구조(중복 값 허용)
+* 완전 이진 트리 기반으로 구성
+* 시간 복잡도: $O(log_2(n))$
+### 종류
+* Max Heap
+  - key(왼쪽 & 오른쪽 자식) <= key(부모)
+  - 인덱스
+    + 부모 인덱스 = (자식 인덱스) / 2
+    + 왼쪽 자식 인덱스 = (부모 인덱스) * 2
+    + 오른쪽 자식 인덱스 = 왼쪽 자식 인덱스 + 1
+ * Min Heap
+   - key(왼쪽 & 오른쪽 자식) >= key(부모)
+   - 인덱스
+     + 부모 인덱스 = (자식 인덱스) / 2
+     + 왼쪽 자식 인덱스 = (부모 인덱스) * 2
+     + 오른쪽 자식 인덱스 = 왼쪽 자식 인덱스 + 1
