@@ -203,3 +203,23 @@
      + 왼쪽 자식 인덱스 = (부모 인덱스) * 2
      + 오른쪽 자식 인덱스 = 왼쪽 자식 인덱스 + 1
 ### Code: [Heap](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day18/Heap.c)
+* * *
+## Graph
+### 특징
+* 연결되어 있는 정점과의 관계를 표현하는 자료구조
+* 정점(vertex): 노드의 집합
+* 간선(edge): 정점 쌍의 집합(정점연결)
+* 차수(degree): 인접 정점의 개수
+* 경로(path)의 길이: 간선의 수(정점의 수 - 1)
+### 종류
+* Undirected Graph
+  - 방향이 없는 간선
+* Directed Graph
+  - 방향이 있는 간선
+* Weighted Graph
+  - 간선에 정점의 연관된 값을 가짐
+* Cycle Graph
+  - 1개 이상의 사이클을 가짐
+### Code
+* [2d array graph](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day19/2dArray_Graph.c)
+* [linked list graph](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day19/LinkedList_Graph.c)
