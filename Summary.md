@@ -223,3 +223,21 @@
 ### Code
 * [2d array graph](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day19/2dArray_Graph.c)
 * [linked list graph](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day19/LinkedList_Graph.c)
+* * *
+## Advance Graph
+### DFS
+* 하나의 정점으로부터 시작하여 차례대로 모든 정점들을 한 번씩 방문, stack 사용
+* 과정
+  1. 하나의 정점을 스택으로 push & 방문 배열(중복 탐색 방지) 체크
+  2. 스택이 비어있지 않으면 pop하고 출력
+  3. 방문하지 않은 인접 정점들을 스택으로 push & 방문 배열 체크
+  4. 스택이 비어 있을 때까지 2번3번 반복
+ * Code: [DFS](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day19/DFS.c)
+### BFS
+* 시작점에서 더 가까운 곳을 순회, queue 사용
+* 과정
+  1. 하나의 정점 방문 표시 체크 후, 큐에 enqueue
+  2. 큐 가장 앞의 정점을 dequeue
+  3. dequeue 된 정점에서 방문하지 않은 인접한 정점들을 방문 표시 체크 후, 큐에 enqueue
+  4. 큐가 비어 있을 때까지 2번3번 반복
+ * Code: [BFS](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day19/BFS.c)
