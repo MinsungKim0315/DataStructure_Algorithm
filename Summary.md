@@ -241,3 +241,25 @@
   3. dequeue 된 정점에서 방문하지 않은 인접한 정점들을 방문 표시 체크 후, 큐에 enqueue
   4. 큐가 비어 있을 때까지 2번3번 반복
  * Code: [BFS](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day19/BFS.c)
+### Greedy Algorithm
+* 주어진 조건에서 가장 최상의 선택을 하는 방법
+* 조건
+  1. Optimal Substructure
+     - 부분의 최적 결과가 전체에도 그대로 적용
+  2. Greedy Choice
+     - 이전의 선택이 이후에 영향을 주지 않음
+* 예
+  - A에서 B로 이동하는 최단 경로
+  - shortest job first scheduling
+  - fractional knapsack problem
+ ### MST(minimum spanning tree)
+ * 모든 정점을 연결하고 연결된 간선의 가중치 합이 최소인 트리
+ * 과정
+   1. 간선들의 가중치를 기준으로 오름차순으로 정렬
+   2. 가중치 낮은 간선을 선택(cycle이 형성되면 제외)
+   3. 정점 - 1 개의 간선의 수가 될 때까지 2번 반복
+ * 두 번째 과정하는 법: Union-Find & DisJoint-Set
+   1. 배열 초기화
+   2. 정점 두 개를 서로 다른 그룹인지 확인
+   3. 정점 두 개를 연결할 때 작은 값을 가진 집합으로 묶기
+ * Code: [MST_Kruskal](https://github.com/MinsungKim0315/DataStructure_Algorithm/blob/main/Day20/MST_Kruskal_2dArray.c)
